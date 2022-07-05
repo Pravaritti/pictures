@@ -1,12 +1,16 @@
 import React from "react";
 
 class SearchBar extends React.Component {
-  //this method gets called anytime user makes changes to input
-  onInputChange(event) {
-    //event is an object that contains info about the event happening
+  //   UNCONTROLLED ELEMENTS
+  //   //this method gets called anytime user makes changes to input
+  //   //   onInputChange(event) {
+  //   //     //event is an object that contains info about the event happening
 
-    event.target.value; //text that user adds
-  }
+  //   //     event.target.value; //text that user adds
+  //   //   }
+
+  //CONTROLLED ELEMENT
+  state = { term: "" }; //initializing state property
 
   render() {
     return (
@@ -22,7 +26,15 @@ class SearchBar extends React.Component {
               onChange -> User changes text in an input
               onSubmit -> user submits a form
               */}
-            <input type="text" onChange={this.onInputChange} />
+            {/* <input type="text" onChange={this.onInputChange} /> */}
+
+            <input
+              type="text"
+              value={this.state.term}
+              onChange={(e) =>
+                this.setState({ term: e.target.value.toUpperCase() })
+              }
+            />
           </div>
         </form>
       </div>
