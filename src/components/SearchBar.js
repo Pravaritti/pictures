@@ -12,10 +12,23 @@ class SearchBar extends React.Component {
   //CONTROLLED ELEMENT
   state = { term: "" }; //initializing state property
 
+  //event handler function
+  onFormSubmit = (event) => {
+    event.preventDefault(); //tires to stop form from submitting and refreshing page everytime user hits enter
+
+    console.log(this.state.term); //using arrow function automatically binds this of parent class(SearchBar).
+    //there are other ways too
+    //1. bind this explicitly in constructor function
+    //2. using arrow function
+    //3. rather than defininng a method on our class, we just pass arrow function directly into our props
+
+    this.props.onSubmit(this.state.term); //reference to the prop (to get access to the callback funciton) we are passing in our
+  };
+
   render() {
     return (
       <div className="ui segment">
-        <form className="ui form">
+        <form onSubmit={this.onFormSubmit} className="ui form">
           <div className="field">
             <label>Image Search</label>
             {/* onchange is a prop that will make sure that every change in input by user the vallback function onInputChange is called automatically/
